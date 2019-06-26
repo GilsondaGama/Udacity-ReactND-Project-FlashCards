@@ -10,7 +10,7 @@ export default class NewDeck extends Component {
   render() {
     return (
       <View>
-        <Text>Dentro do DeckList!</Text>
+        <Text>Dentro do NewDeck!</Text>
         <Text>Envio: {this.props.navigation.getParam("varTeste")}</Text>
         <Button
           title="Salvar e Voltar"

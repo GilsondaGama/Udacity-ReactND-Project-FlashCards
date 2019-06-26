@@ -9,7 +9,7 @@ export default class QuizView extends Component {
   render() {
     return (
       <View>
-        <Text>Dentro do DeckList!</Text>
+        <Text>Dentro do QuizView!</Text>
       </View>
     );
   }

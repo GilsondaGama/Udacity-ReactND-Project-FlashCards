@@ -29,6 +29,15 @@ export default class DeckList extends Component {
             })
           }
         />
+
+        <Button
+          title="Choice Deck"
+          onPress={() =>
+            this.props.navigation.navigate("DeckView", {
+              varTeste: "Teste de evio de Dados"
+            })
+          }
+        />
       </View>
     );
   }
