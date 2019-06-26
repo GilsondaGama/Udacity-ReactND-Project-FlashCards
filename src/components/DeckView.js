@@ -7,6 +7,10 @@ export default class DeckView extends Component {
     headerTitle: "DeckView"
   };
   render() {
-    return <View />;
+    return (
+      <View>
+        <Text>Dentro do DeckList!</Text>
+      </View>
+    );
   }
 }

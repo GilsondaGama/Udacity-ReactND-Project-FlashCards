@@ -6,23 +6,22 @@ import DeckView from "../components/DeckView";
 import AddCard from "../components/AddCard";
 import QuizView from "../components/QuizView";
 
-export default createAppContainer(
-  createStackNavigator(
-    {
-      DeckList,
-      NewDeck,
-      DeckView,
-      AddCard,
-      QuizView
-    },
-    {
-      //     initialRouteName: "DeckList",
-      defaultNavigationOptions: {
-        headerTintColor: "#000",
-        headerTitle: "FlashCards",
-        headerBackTitle: null
-      },
-      mode: "modal"
-    }
-  )
-);
+const AppNavigator = createStackNavigator({
+  DeckList: {
+    screen: DeckList
+  },
+  NewDeck: {
+    screen: NewDeck
+  },
+  DeckView: {
+    screen: DeckView
+  },
+  AddCard: {
+    screen: AddCard
+  },
+  QuizView: {
+    screen: QuizView
+  }
+});
+
+export default createAppContainer(AppNavigator);
