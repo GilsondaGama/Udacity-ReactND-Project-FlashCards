@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import {
@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
-  Dimensions
+  Dimensions,
+  Button
 } from "react-native";
 import stackNavigator from 'react-navigation'
 
@@ -15,40 +16,8 @@ import styled from "styled-components";
 import Constants from 'expo-constants';
 
 import * as DecksActions from "../actions/decks";
-//import NewDeck from "../components/NewDeck";
+import NewDeck from "../components/NewDeck";
 
-function Desk({ decKey, title, numberOfCards }) {
-  return (
-    <TouchableOpacity onPress={() => this.props.navigation.navigate('NewDeck')} >
-      <DeskContainer
-        style={{ backgroundColor: `${lightpurple}` }}>
-        <View>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 23,
-              fontWeight: 'bold',
-              color: `${white}`
-            }}
-          >
-            {title}
-          </Text>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 18,
-              fontWeight: 'bold',
-              color: `${white}`,
-              marginTop: 2
-            }}
-          >
-            {numberOfCards} Cards
-          </Text>
-        </View>
-      </DeskContainer>
-    </ TouchableOpacity >
-  );
-}
 
 class DeckList extends Component {
   static navigationOptions = {
@@ -61,12 +30,34 @@ class DeckList extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <Desk
-        key={item.key}
-        decKey={item.key}
-        title={item.title}
-        numberOfCards={item.questions.length}
-      />
+      <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckView')} >
+        <DeskContainer
+          style={{ backgroundColor: `${lightpurple}` }}>
+          <View>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontSize: 23,
+                fontWeight: 'bold',
+                color: `${white}`
+              }}
+            >
+              {item.title}
+            </Text>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontSize: 18,
+                fontWeight: 'bold',
+                color: `${white}`,
+                marginTop: 2
+              }}
+            >
+              {item.questions.length} Cards
+            </Text>
+          </View>
+        </DeskContainer>
+      </ TouchableOpacity >
     );
   };
 
@@ -78,21 +69,35 @@ class DeckList extends Component {
     });
 
     return (
-      <ListContainer>
-        <FlatList
-          data={data}
-          renderItem={this.renderItem}
-        />
+      <Fragment>
+        <ListContainer>
+          <FlatList
+            data={data}
+            renderItem={this.renderItem}
+          />
 
+        </ListContainer>
+
+        <Button
+          title="Add Deck"
+          onPress={() =>
+            this.props.navigation.navigate("NewDeck", {
+              varTeste: "Valor do Deck"
+            })
+          }
+        />
+      </Fragment>
+    );
+  }
+}
+
+/*
         <AddButtonOverlay>
           <TouchableOpacity onPress={() => { }}>
             <Text>Add Deck</Text>
           </TouchableOpacity>
         </AddButtonOverlay>
-      </ListContainer>
-    );
-  }
-}
+*/
 
 const mapStateToProps = state => ({
   decks: state.decks
