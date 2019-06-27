@@ -6,6 +6,8 @@ import DeckView from "../components/DeckView";
 import AddCard from "../components/AddCard";
 import QuizView from "../components/QuizView";
 
+import { lightpurple, white } from '../../utils/colors';
+
 const AppNavigator = createStackNavigator(
   {
     DeckList: {
@@ -27,9 +29,9 @@ const AppNavigator = createStackNavigator(
   {
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "#9D45A3"
+        backgroundColor: `${lightpurple}`
       },
-      headerTintColor: "#FFF"
+      headerTintColor: `${white}`
     }
   }
 );

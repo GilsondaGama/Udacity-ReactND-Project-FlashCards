@@ -25,10 +25,19 @@ const dataStore = {
           "The combination of a function and the lexical environment within which that function was declared."
       }
     ]
+  },
+  Redux: {
+    title: "Redux",
+    questions: [
+      {
+        question: "What is Redux?",
+        answer: "Redux is a predictable state container for JavaScript apps"
+      }
+    ]
   }
 };
 
-export function saveDeck(newDeck) {
+export function _saveDeck(newDeck) {
   AsyncStorage.getItem(FLASHCARD_STORAGE_KEY).then(decksStored => {
     const decksJSON = JSON.parse(decksStored);
     const mergeDesks = { ...decksJSON, ...newDeck };
@@ -42,7 +51,7 @@ export function saveDeck(newDeck) {
   });
 }
 
-export function getDecks() {
+export function _getDecks() {
   return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
     .then(response => JSON.parse(response))
     .then(response => {
@@ -50,7 +59,7 @@ export function getDecks() {
     });
 }
 
-export function saveCardToDeck(decKey, card) {
+export function _saveCardToDeck(decKey, card) {
   return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY).then(decksStored => {
     const decks = JSON.parse(decksStored);
     decks[decKey].questions.push(card);

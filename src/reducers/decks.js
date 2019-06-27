@@ -1,4 +1,4 @@
-import { ADD_NEW_DESK, RECEIVE_DECKS, ADD_NEW_CARD } from "../actions";
+import { ADD_NEW_DESK, RECEIVE_DECKS, ADD_NEW_CARD } from "../actions/decks";
 
 initialState = {
   React: {
@@ -21,6 +21,15 @@ initialState = {
         question: "What is a closure?",
         answer:
           "The combination of a function and the lexical environment within which that function was declared."
+      }
+    ]
+  },
+  Redux: {
+    title: "Redux",
+    questions: [
+      {
+        question: "What is Redux?",
+        answer: "Redux is a predictable state container for JavaScript apps"
       }
     ]
   }

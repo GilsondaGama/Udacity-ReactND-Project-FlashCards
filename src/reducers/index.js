@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import reducers from "./reducers";
+import decks from "./decks";
 
 export default combineReducers({
-  reducers
+  decks
 });
