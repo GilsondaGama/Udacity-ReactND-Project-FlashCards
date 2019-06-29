@@ -9,14 +9,22 @@ import {
   Dimensions,
   Button
 } from "react-native";
-import stackNavigator from 'react-navigation'
 
-import { black, gray, lightpurple, purple, white } from '../../utils/colors';
-import styled from "styled-components";
+import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import { red } from '@material-ui/core/colors';
+
+import styled from "styled-components/native";
 import Constants from 'expo-constants';
+import { lightpurple, purple, white } from '../../utils/colors';
 
 import * as DecksActions from "../actions/decks";
-import NewDeck from "../components/NewDeck";
+
+const useStyles = makeStyles({
+  avatar: {
+    margin: 10,
+  },
+});
 
 
 class DeckList extends Component {
@@ -28,11 +36,10 @@ class DeckList extends Component {
     this.props.loadDeckList();
   }
 
-  renderItem = ({ item }) => {
+  renderItem(item) {
     return (
       <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckView')} >
-        <DeskContainer
-          style={{ backgroundColor: `${lightpurple}` }}>
+        <DeskContainer >
           <View>
             <Text
               style={{
@@ -70,22 +77,21 @@ class DeckList extends Component {
 
     return (
       <Fragment>
-        <ListContainer>
+        <ListContainer >
           <FlatList
             data={data}
-            renderItem={this.renderItem}
+            renderItem={({ item }) => this.renderItem(item)}
           />
 
+          <Button
+            title="Add Deck"
+            onPress={() =>
+              this.props.navigation.navigate("NewDeck", {
+                varTeste: "Valor do Deck"
+              })
+            }
+          />
         </ListContainer>
-
-        <Button
-          title="Add Deck"
-          onPress={() =>
-            this.props.navigation.navigate("NewDeck", {
-              varTeste: "Valor do Deck"
-            })
-          }
-        />
       </Fragment>
     );
   }
@@ -99,6 +105,31 @@ class DeckList extends Component {
         </AddButtonOverlay>
 */
 
+const ListContainer = styled.View`
+  flex: 1;
+  flexDirection: column;
+  marginTop: 0px;
+  paddingLeft: 35px;
+  paddingRight: 35px;
+  paddingBottom: 15px;
+  backgroundColor: ${purple};
+  zIndex: 1;  
+`;
+
+const DeskContainer = styled.View`
+  flexDirection: row;
+  height: 90px;
+  marginTop: 15px;
+  padding: 10px;
+  justifyContent: center;
+  alignItems: center;
+  borderRadius: 50;
+  shadowOpacity: 1;
+  elevation: 4;
+  backgroundColor: ${lightpurple};
+`;
+
+
 const mapStateToProps = state => ({
   decks: state.decks
 });
@@ -111,40 +142,3 @@ export default connect(
   mapDispachToProps
 )(DeckList);
 
-const { height, width } = Dimensions.get('window');
-
-const ListContainer = styled.View`
-        flex: 1;
-        flexDirection: column;
-        marginTop: 0px;
-        paddingLeft: 35px;
-        paddingRight: 35px;
-        paddingBottom: 15px;
-  backgroundColor: ${purple};
-      zIndex: 1;
-    `;
-
-const DeskContainer = styled.View`
-      flexDirection: row;
-      height: 90px;
-      marginTop: 15px;
-      padding: 10px;
-      justifyContent: center;
-      alignItems: center;
-      borderRadius: 50;
-      shadowOpacity: 1;
-      elevation: 4;
-    `;
-
-const ImageStyled = styled.Image`
-      width: 55;
-      height: 55;
-    `;
-
-const AddButtonOverlay = styled.View`
-      flexDirection: column;
-      position: absolute;
-  marginTop: ${height - (7 * Constants.statusBarHeight)};
-  marginLeft: ${width - 80};
-      opacity: 0.6;
-    `;
