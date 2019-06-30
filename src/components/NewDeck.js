@@ -6,7 +6,7 @@ import { Icon } from 'react-native-material-ui';
 import { View, TouchableOpacity, FlatList, Animated } from "react-native";
 
 import styled from "styled-components/native";
-import { white, black, blue200, blue400, blue600, blue700, blue800, blue900 } from '../../utils/colors';
+import { white, black, blue200, blue400, blue600, green700, blue700, red700 } from '../../utils/colors';
 
 import * as DecksActions from "../actions/decks";
 
@@ -23,6 +23,7 @@ class NewDeck extends Component {
     const { title } = this.state;
     if (title.length >= 5) {
       this.props.addNewDeck(this.state.title);
+      this.setState({ title: '' })
       alertMessage('Success!!', 'A new deck was added!!', () => this.props.navigation.navigate('DeckView'));
     } else {
       alertMessage('Sorry!!', 'The deck title needs to be filled in', () => false);
@@ -46,20 +47,29 @@ class NewDeck extends Component {
             autoCapitalize='words'
             value={this.state.title}
             onChangeText={(title) => this.setState({ title })}
-
           />
 
-          <TouchableOpacityCustom onPress={this.onSubmit}>
+          <TouchableOK onPress={this.onSubmit}>
             <Icon
               name="check-circle"
               color={white}
-              size={60}
+              size={40}
             />
-            <ButtonText >
+            <TextButton >
               SAVE DECK
-            </ButtonText>
+            </TextButton>
+          </TouchableOK>
 
-          </TouchableOpacityCustom>
+          <TouchableNotOK onPress={() => this.props.navigation.goBack()}>
+            <Icon
+              name="cancel"
+              color={white}
+              size={40}
+            />
+            <TextButton >
+              CANCEL
+            </TextButton>
+          </TouchableNotOK>
         </Body>
       </Container>
     );
@@ -74,6 +84,7 @@ export default connect(null, mapDispachToProps)(NewDeck);
 const Container = styled.View`
   flex: 1;
   flexDirection: column;
+  alignItems: center;
   padding: 10px;
   backgroundColor: ${blue600}
   paddingLeft: 30px;
@@ -109,17 +120,18 @@ const Body = styled.View`
 const TextInputCustom = styled.TextInput`
   height: 50;
   color: ${black};
-  borderColor: ${blue900};
-  borderWidth: 4;
+  borderColor: ${blue700};
+  borderWidth: 2;
   borderRadius: 4;
   paddingLeft: 12;
   fontSize: 18;
   backgroundColor: ${white};
 `;
 
-const TouchableOpacityCustom = styled.TouchableOpacity`
+const TouchableOK = styled.TouchableOpacity`
   marginTop: 30;
-  backgroundColor: ${blue800};
+  width: 200px;
+  backgroundColor: ${green700};
   paddingTop: 5;
   paddingBottom: 5;
   borderRadius: 50;
@@ -128,10 +140,13 @@ const TouchableOpacityCustom = styled.TouchableOpacity`
   elevation: 2;
 `;
 
-const ButtonText = styled.Text`
+const TouchableNotOK = styled(TouchableOK)`
+  backgroundColor: ${red700};
+`;
+
+const TextButton = styled.Text`
   textAlign: center;
-  fontSize: 23;
-  fontWeight: bold;
+  fontSize: 15;
   color: ${white};
 `;
 

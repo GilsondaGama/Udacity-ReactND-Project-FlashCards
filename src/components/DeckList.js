@@ -68,20 +68,16 @@ class DeckList extends Component {
 
           <TouchableOpacityCustom
             onPress={() =>
-              this.props.navigation.navigate("NewDeck", {
-                varTeste: "Valor do Deck"
-              })
+              this.props.navigation.navigate("NewDeck")
             }>
-
             <Icon
               name="add-circle"
               color={white}
-              size={60}
+              size={40}
             />
-            <ButtonText >
-              ADD DECK
-            </ButtonText>
-
+            <TextButton >
+              NEW DECK
+            </TextButton>
           </TouchableOpacityCustom>
         </ListContainer>
       </Fragment>
@@ -89,8 +85,30 @@ class DeckList extends Component {
   }
 }
 
+const TextDesk = styled.Text`
+  fontSize: 25px;
+  color: ${white};
+  marginTop: 2px;
+  marginLeft: 30;
+`;
+
+const TextDeskAvatar = styled(TextDesk)`
+marginLeft: 0;
+`;
+
+const TextDeskSmall = styled(TextDesk)`
+fontSize: 15px;
+`;
+
+const TextButton = styled.Text`
+  textAlign: center;
+  fontSize: 15;
+  color: ${white};
+`;
+
 const ListContainer = styled.View`
   flex: 1;
+  alignItems: center;
   flexDirection: column;
   marginTop: 0px;
   paddingLeft: 30px;
@@ -114,21 +132,6 @@ const DeskContainer = styled.View`
   backgroundColor: ${blue400};
 `;
 
-const TextDesk = styled.Text`
-  fontSize: 25px;
-  color: ${white};
-  marginTop: 2px;
-  marginLeft: 30;
-`;
-
-const TextDeskSmall = styled(TextDesk)`
-  fontSize: 15px;
-`;
-
-const TextDeskAvatar = styled(TextDesk)`
-  marginLeft: 0;
-`;
-
 const Avatar = styled.View`
   height: 50px;
   width: 50px;
@@ -141,7 +144,8 @@ const Avatar = styled.View`
 `;
 
 const TouchableOpacityCustom = styled.TouchableOpacity`
-  marginTop: 5;
+  width: 200px;
+  marginTop: 10;
   backgroundColor: ${blue800};
   paddingTop: 5;
   paddingBottom: 5;
@@ -149,13 +153,6 @@ const TouchableOpacityCustom = styled.TouchableOpacity`
   justifyContent: center;
   alignItems: center;
   elevation: 2;
-`;
-
-const ButtonText = styled.Text`
-  textAlign: center;
-  fontSize: 23;
-  fontWeight: bold;
-  color: ${white};
 `;
 
 const mapStateToProps = state => ({
