@@ -1,14 +1,19 @@
 import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { View, TouchableOpacity, Text, FlatList } from "react-native";
+import { Icon } from 'react-native-material-ui';
+import { View, TouchableOpacity, FlatList, Animated } from "react-native";
 
 import styled from "styled-components/native";
-import { white, purple200, purple400, purple600, purple700, purple800 } from '../../utils/colors';
+import { white, blue200, blue400, blue600, blue700, blue800 } from '../../utils/colors';
 
 import * as DecksActions from "../actions/decks";
 
 class DeckList extends Component {
+  state = {
+    opacity: new Animated.Value(0)
+  }
+
   static navigationOptions = {
     headerTitle: "DeckList"
   };
@@ -17,10 +22,16 @@ class DeckList extends Component {
     this.props.loadDeckList();
   }
 
+  componentDidMount() {
+    const { opacity } = this.state;
+    Animated.timing(opacity, { toValue: 1, duration: 1000 }).start();
+  }
+
   renderItem(item) {
+    const { opacity } = this.state;
     return (
       <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckView')} >
-        <DeskContainer >
+        <DeskContainer as={Animated.View} style={[{ opacity }]}>
           <Avatar>
             <TextDeskAvatar >
               {item.title.charAt(0).toUpperCase()}
@@ -61,9 +72,16 @@ class DeckList extends Component {
                 varTeste: "Valor do Deck"
               })
             }>
-            <ButtonText>
+
+            <Icon
+              name="add-circle"
+              color={white}
+              size={60}
+            />
+            <ButtonText >
               ADD DECK
             </ButtonText>
+
           </TouchableOpacityCustom>
         </ListContainer>
       </Fragment>
@@ -78,7 +96,7 @@ const ListContainer = styled.View`
   paddingLeft: 30px;
   paddingRight: 30px;
   paddingBottom: 15px;
-  backgroundColor: ${purple600};
+  backgroundColor: ${blue600};
   zIndex: 1;  
 `;
 
@@ -90,10 +108,10 @@ const DeskContainer = styled.View`
   alignItems: center;
   borderRadius: 50;
   borderWidth: 2;
-  borderColor: ${purple200}; 
+  borderColor: ${blue200}; 
   shadowOpacity: 1;
   elevation: 6;
-  backgroundColor: ${purple400};
+  backgroundColor: ${blue400};
 `;
 
 const TextDesk = styled.Text`
@@ -119,15 +137,15 @@ const Avatar = styled.View`
   borderRadius: 25;
   borderWidth: 0;
   marginLeft: 15;
-  backgroundColor: ${purple700};
+  backgroundColor: ${blue700};
 `;
 
 const TouchableOpacityCustom = styled.TouchableOpacity`
-  marginTop: 30;
-  backgroundColor: ${purple800};
-  paddingTop: 10;
-  paddingBottom: 10;
-  borderRadius: 35;
+  marginTop: 5;
+  backgroundColor: ${blue800};
+  paddingTop: 5;
+  paddingBottom: 5;
+  borderRadius: 50;
   justifyContent: center;
   alignItems: center;
   elevation: 2;
