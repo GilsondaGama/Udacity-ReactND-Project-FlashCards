@@ -1,31 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  FlatList,
-  Dimensions,
-  Button
-} from "react-native";
-
-import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import { red } from '@material-ui/core/colors';
+import { View, TouchableOpacity, Text, FlatList } from "react-native";
 
 import styled from "styled-components/native";
-import Constants from 'expo-constants';
-import { lightpurple, purple, white } from '../../utils/colors';
+import { white, purple200, purple400, purple600, purple700, purple800 } from '../../utils/colors';
 
 import * as DecksActions from "../actions/decks";
-
-const useStyles = makeStyles({
-  avatar: {
-    margin: 10,
-  },
-});
-
 
 class DeckList extends Component {
   static navigationOptions = {
@@ -40,28 +21,19 @@ class DeckList extends Component {
     return (
       <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckView')} >
         <DeskContainer >
+          <Avatar>
+            <TextDeskAvatar >
+              {item.title.charAt(0).toUpperCase()}
+            </TextDeskAvatar>
+          </Avatar>
+
           <View>
-            <Text
-              style={{
-                textAlign: 'center',
-                fontSize: 23,
-                fontWeight: 'bold',
-                color: `${white}`
-              }}
-            >
+            <TextDesk >
               {item.title}
-            </Text>
-            <Text
-              style={{
-                textAlign: 'center',
-                fontSize: 18,
-                fontWeight: 'bold',
-                color: `${white}`,
-                marginTop: 2
-              }}
-            >
+            </TextDesk>
+            <TextDeskSmall >
               {item.questions.length} Cards
-            </Text>
+            </TextDeskSmall>
           </View>
         </DeskContainer>
       </ TouchableOpacity >
@@ -83,36 +55,30 @@ class DeckList extends Component {
             renderItem={({ item }) => this.renderItem(item)}
           />
 
-          <Button
-            title="Add Deck"
+          <TouchableOpacityCustom
             onPress={() =>
               this.props.navigation.navigate("NewDeck", {
                 varTeste: "Valor do Deck"
               })
-            }
-          />
+            }>
+            <ButtonText>
+              ADD DECK
+            </ButtonText>
+          </TouchableOpacityCustom>
         </ListContainer>
       </Fragment>
     );
   }
 }
 
-/*
-        <AddButtonOverlay>
-          <TouchableOpacity onPress={() => { }}>
-            <Text>Add Deck</Text>
-          </TouchableOpacity>
-        </AddButtonOverlay>
-*/
-
 const ListContainer = styled.View`
   flex: 1;
   flexDirection: column;
   marginTop: 0px;
-  paddingLeft: 35px;
-  paddingRight: 35px;
+  paddingLeft: 30px;
+  paddingRight: 30px;
   paddingBottom: 15px;
-  backgroundColor: ${purple};
+  backgroundColor: ${purple600};
   zIndex: 1;  
 `;
 
@@ -121,14 +87,58 @@ const DeskContainer = styled.View`
   height: 90px;
   marginTop: 15px;
   padding: 10px;
-  justifyContent: center;
   alignItems: center;
   borderRadius: 50;
+  borderWidth: 2;
+  borderColor: ${purple200}; 
   shadowOpacity: 1;
-  elevation: 4;
-  backgroundColor: ${lightpurple};
+  elevation: 6;
+  backgroundColor: ${purple400};
 `;
 
+const TextDesk = styled.Text`
+  fontSize: 25px;
+  color: ${white};
+  marginTop: 2px;
+  marginLeft: 30;
+`;
+
+const TextDeskSmall = styled(TextDesk)`
+  fontSize: 15px;
+`;
+
+const TextDeskAvatar = styled(TextDesk)`
+  marginLeft: 0;
+`;
+
+const Avatar = styled.View`
+  height: 50px;
+  width: 50px;
+  justifyContent: center;
+  alignItems: center;
+  borderRadius: 25;
+  borderWidth: 0;
+  marginLeft: 15;
+  backgroundColor: ${purple700};
+`;
+
+const TouchableOpacityCustom = styled.TouchableOpacity`
+  marginTop: 30;
+  backgroundColor: ${purple800};
+  paddingTop: 10;
+  paddingBottom: 10;
+  borderRadius: 35;
+  justifyContent: center;
+  alignItems: center;
+  elevation: 2;
+`;
+
+const ButtonText = styled.Text`
+  textAlign: center;
+  fontSize: 23;
+  fontWeight: bold;
+  color: ${white};
+`;
 
 const mapStateToProps = state => ({
   decks: state.decks
