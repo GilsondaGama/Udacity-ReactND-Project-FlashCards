@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Actions } from 'react-native-router-flux';
@@ -8,7 +8,6 @@ import { Icon } from 'react-native-material-ui';
 import styled from "styled-components/native";
 import * as DecksActions from "../actions/decks";
 import { white, blue200, blue400, blue600, blue700, blue800 } from '../../utils/colors';
-
 
 function Desk({ decKey, title, numberOfCards }) {
   return (
@@ -38,10 +37,6 @@ class DeckList extends Component {
   state = {
     opacity: new Animated.Value(0)
   }
-
-  static navigationOptions = {
-    headerTitle: "DeckList"
-  };
 
   componentWillMount() {
     this.props.loadDeckList();

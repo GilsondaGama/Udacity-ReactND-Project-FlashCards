@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { alertMessage } from '../../utils/notifications';
 import { Icon } from 'react-native-material-ui';
+import { Actions } from 'react-native-router-flux';
 import { View, TouchableOpacity, FlatList, Animated } from "react-native";
 
 import styled from "styled-components/native";
@@ -21,12 +22,12 @@ class NewDeck extends Component {
 
   onSubmit = () => {
     const { title } = this.state;
-    if (title.length >= 5) {
+    if (title.length > 4) {
       this.props.addNewDeck(this.state.title);
-      this.setState({ title: '' })
-      alertMessage('Success!!', 'A new deck was added!!', () => this.props.navigation.navigate('DeckView'));
+      alertMessage('Success!!', 'A new deck was added!!',
+        () => Actions.DeckView({ decKey: title }));
     } else {
-      alertMessage('Sorry!!', 'The deck title needs to be filled in', () => false);
+      alertMessage('Sorry!!', 'The deck title needs at least 5 characters!', () => false);
     }
   }
 
@@ -49,27 +50,29 @@ class NewDeck extends Component {
             onChangeText={(title) => this.setState({ title })}
           />
 
-          <TouchableOK onPress={this.onSubmit}>
-            <Icon
-              name="check-circle"
-              color={white}
-              size={40}
-            />
-            <TextButton >
-              SAVE DECK
-            </TextButton>
-          </TouchableOK>
+          <Buttons >
+            <TouchableOK onPress={this.onSubmit}>
+              <Icon
+                name="check-circle"
+                color={white}
+                size={40}
+              />
+              <TextButton >
+                SAVE DECK
+              </TextButton>
+            </TouchableOK>
 
-          <TouchableNotOK onPress={() => this.props.navigation.goBack()}>
-            <Icon
-              name="cancel"
-              color={white}
-              size={40}
-            />
-            <TextButton >
-              CANCEL
-            </TextButton>
-          </TouchableNotOK>
+            <TouchableNotOK onPress={() => Actions.DeckList()}>
+              <Icon
+                name="cancel"
+                color={white}
+                size={40}
+              />
+              <TextButton >
+                CANCEL
+              </TextButton>
+            </TouchableNotOK>
+          </Buttons>
         </Body>
       </Container>
     );
@@ -117,6 +120,11 @@ const Body = styled.View`
   marginTop: 20;
 `;
 
+const Buttons = styled.View`
+  marginTop: 20;
+  flexDirection: row;
+`;
+
 const TextInputCustom = styled.TextInput`
   height: 50;
   color: ${black};
@@ -130,7 +138,9 @@ const TextInputCustom = styled.TextInput`
 
 const TouchableOK = styled.TouchableOpacity`
   marginTop: 30;
-  width: 200px;
+  marginRight: 10;
+  marginLeft: 10;
+  width: 150px;
   backgroundColor: ${green700};
   paddingTop: 5;
   paddingBottom: 5;
