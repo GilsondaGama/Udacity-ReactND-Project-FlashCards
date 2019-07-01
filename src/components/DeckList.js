@@ -5,9 +5,11 @@ import { Actions } from 'react-native-router-flux';
 
 import { View, TouchableOpacity, FlatList, Animated } from "react-native";
 import { Icon } from 'react-native-material-ui';
-import styled from "styled-components/native";
 import * as DecksActions from "../actions/decks";
-import { white, blue200, blue400, blue600, blue700, blue800 } from '../../utils/colors';
+import { white } from '../../utils/colors';
+import {
+  TextDesk, TextDeskAvatar, TextDeskSmall, TextButton, Container, DeskContainer, TouchableButtonGreen, Avatar
+} from '../../utils/styleds'
 
 function Desk({ decKey, title, numberOfCards }) {
   return (
@@ -66,97 +68,27 @@ class DeckList extends Component {
 
     return (
 
-      <ListContainer >
+      <Container as={Animated.View} style={[{ opacity }]}>
         <FlatList
           data={data}
           renderItem={this.renderItem}
         />
 
-        <TouchableOpacityCustom onPress={() => Actions.NewDeck()}>
+        <TouchableButtonGreen onPress={() => Actions.NewDeck()}>
           <Icon
             name="add-circle"
             color={white}
             size={40}
           />
-          <TextButton >
-            NEW DECK
-          </TextButton>
-        </TouchableOpacityCustom>
-      </ListContainer>
+          <TextDesk >
+            New Deck
+          </TextDesk>
+        </TouchableButtonGreen>
+      </Container>
 
     );
   }
 }
-
-const TextDesk = styled.Text`
-  fontSize: 25px;
-  color: ${white};
-  marginTop: 2px;
-  marginLeft: 30;
-`;
-
-const TextDeskAvatar = styled(TextDesk)`
-marginLeft: 0;
-`;
-
-const TextDeskSmall = styled(TextDesk)`
-fontSize: 15px;
-`;
-
-const TextButton = styled.Text`
-  textAlign: center;
-  fontSize: 15;
-  color: ${white};
-`;
-
-const ListContainer = styled.View`
-  flex: 1;
-  alignItems: center;
-  flexDirection: column;
-  marginTop: 0px;
-  paddingLeft: 30px;
-  paddingRight: 30px;
-  paddingBottom: 15px;
-  backgroundColor: ${blue600};
-  zIndex: 1;  
-`;
-
-const DeskContainer = styled.View`
-  flexDirection: row;
-  height: 90px;
-  marginTop: 15px;
-  padding: 10px;
-  alignItems: center;
-  borderRadius: 50;
-  borderWidth: 2;
-  borderColor: ${blue200}; 
-  shadowOpacity: 1;
-  elevation: 6;
-  backgroundColor: ${blue400};
-`;
-
-const Avatar = styled.View`
-  height: 50px;
-  width: 50px;
-  justifyContent: center;
-  alignItems: center;
-  borderRadius: 25;
-  borderWidth: 0;
-  marginLeft: 15;
-  backgroundColor: ${blue700};
-`;
-
-const TouchableOpacityCustom = styled.TouchableOpacity`
-  width: 200px;
-  marginTop: 10;
-  backgroundColor: ${blue800};
-  paddingTop: 5;
-  paddingBottom: 5;
-  borderRadius: 50;
-  justifyContent: center;
-  alignItems: center;
-  elevation: 2;
-`;
 
 const mapStateToProps = state => ({
   decks: state.decks

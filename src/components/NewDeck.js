@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import { alertMessage } from '../../utils/notifications';
 import { Icon } from 'react-native-material-ui';
 import { Actions } from 'react-native-router-flux';
-import { View, TouchableOpacity, FlatList, Animated } from "react-native";
 
 import styled from "styled-components/native";
-import { white, black, blue200, blue400, blue600, green700, blue700, red700 } from '../../utils/colors';
-
+import { white, black, blue200, blue400, blue600, blue700, } from '../../utils/colors';
+import { TextDesk, TextInputCustom, TouchableButtonGreen, TouchableButtonRed, Container } from '../../utils/styleds'
 import * as DecksActions from "../actions/decks";
 
 class NewDeck extends Component {
@@ -50,29 +49,28 @@ class NewDeck extends Component {
             onChangeText={(title) => this.setState({ title })}
           />
 
-          <Buttons >
-            <TouchableOK onPress={this.onSubmit}>
-              <Icon
-                name="check-circle"
-                color={white}
-                size={40}
-              />
-              <TextButton >
-                SAVE DECK
-              </TextButton>
-            </TouchableOK>
+          <TouchableButtonGreen onPress={this.onSubmit}>
+            <Icon
+              name="check-circle"
+              color={white}
+              size={40}
+            />
+            <TextDesk >
+              Save Deck
+            </TextDesk>
+          </TouchableButtonGreen>
 
-            <TouchableNotOK onPress={() => Actions.DeckList()}>
-              <Icon
-                name="cancel"
-                color={white}
-                size={40}
-              />
-              <TextButton >
-                CANCEL
-              </TextButton>
-            </TouchableNotOK>
-          </Buttons>
+          <TouchableButtonRed onPress={() => Actions.DeckList()}>
+            <Icon
+              name="cancel"
+              color={white}
+              size={40}
+            />
+            <TextDesk >
+              Cancel
+            </TextDesk>
+          </TouchableButtonRed>
+
         </Body>
       </Container>
     );
@@ -83,16 +81,6 @@ const mapDispachToProps = dispatch =>
   bindActionCreators(DecksActions, dispatch);
 
 export default connect(null, mapDispachToProps)(NewDeck);
-
-const Container = styled.View`
-  flex: 1;
-  flexDirection: column;
-  alignItems: center;
-  padding: 10px;
-  backgroundColor: ${blue600}
-  paddingLeft: 30px;
-  paddingRight: 30px;  
-`;
 
 const Header = styled.View`
   flex: 1;
@@ -119,44 +107,3 @@ const Body = styled.View`
   flex: 3;
   marginTop: 20;
 `;
-
-const Buttons = styled.View`
-  marginTop: 20;
-  flexDirection: row;
-`;
-
-const TextInputCustom = styled.TextInput`
-  height: 50;
-  color: ${black};
-  borderColor: ${blue700};
-  borderWidth: 2;
-  borderRadius: 4;
-  paddingLeft: 12;
-  fontSize: 18;
-  backgroundColor: ${white};
-`;
-
-const TouchableOK = styled.TouchableOpacity`
-  marginTop: 30;
-  marginRight: 10;
-  marginLeft: 10;
-  width: 150px;
-  backgroundColor: ${green700};
-  paddingTop: 5;
-  paddingBottom: 5;
-  borderRadius: 50;
-  justifyContent: center;
-  alignItems: center;
-  elevation: 2;
-`;
-
-const TouchableNotOK = styled(TouchableOK)`
-  backgroundColor: ${red700};
-`;
-
-const TextButton = styled.Text`
-  textAlign: center;
-  fontSize: 15;
-  color: ${white};
-`;
-

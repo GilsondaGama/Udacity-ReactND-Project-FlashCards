@@ -77,14 +77,14 @@ class DeckView extends Component {
         />
 
         <Buttons >
-          <TouchableAdd onPress={() => Actions.AddCard({ decKey })}>
+          <TouchableAdd onPress={() => Actions.NewCard({ decKey })}>
             <Icon
               name="add-circle"
               color={white}
               size={40}
             />
             <TextButton >
-              ADD CARD
+              NEW CARD
             </TextButton>
           </TouchableAdd>
 
