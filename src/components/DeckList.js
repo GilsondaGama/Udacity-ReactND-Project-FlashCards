@@ -81,7 +81,7 @@ class DeckList extends Component {
             size={40}
           />
           <TextDesk >
-            New Deck
+            NEW DECK
           </TextDesk>
         </TouchableButtonGreen>
       </Container>

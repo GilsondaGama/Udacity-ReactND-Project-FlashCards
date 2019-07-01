@@ -7,8 +7,8 @@ import { Icon } from 'react-native-material-ui';
 import { alertMessage } from '../../utils/notifications';
 import * as DecksActions from "../actions/decks";
 import styled from "styled-components/native";
-import { white, black, blue200, blue400, blue600, blue700, } from '../../utils/colors';
 import { TextDesk, TouchableButtonGreen, TouchableButtonRed, TextInputCustom, Container } from '../../utils/styleds'
+import { white, black, blue200, blue400, blue600, blue700, } from '../../utils/colors';
 
 
 class NewCard extends Component {
@@ -62,25 +62,21 @@ class NewCard extends Component {
             onChangeText={(answer) => this.setState({ answer })}
           />
 
-          <TouchableButtonGreen onPress={this.onSubmit}>
+          <TouchableButtonGreen onPress={() => this.onSubmit(this.props.decKey)}>
             <Icon
               name="check-circle"
               color={white}
               size={40}
             />
             <TextDesk >
-              Save Card
+              SAVE CARD
             </TextDesk>
           </TouchableButtonGreen>
 
           <TouchableButtonRed onPress={() => Actions.pop()}>
-            <Icon
-              name="cancel"
-              color={white}
-              size={40}
-            />
+            <Icon name="cancel" color={white} size={40} marginLeft={-20} />
             <TextDesk >
-              Cancel
+              CANCEL
             </TextDesk>
           </TouchableButtonRed>
 

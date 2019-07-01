@@ -56,7 +56,7 @@ class NewDeck extends Component {
               size={40}
             />
             <TextDesk >
-              Save Deck
+              SAVE DECK
             </TextDesk>
           </TouchableButtonGreen>
 
@@ -67,7 +67,7 @@ class NewDeck extends Component {
               size={40}
             />
             <TextDesk >
-              Cancel
+              CANCEL
             </TextDesk>
           </TouchableButtonRed>
 

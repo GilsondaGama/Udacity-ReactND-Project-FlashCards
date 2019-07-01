@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4a5330f-8e1a-4e51-a07a-235186f2747d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DeckList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DeckList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DeckView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DeckView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewDeck.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewDeck.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/styleds.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/styleds.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +28,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -62,7 +64,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.30206677" />

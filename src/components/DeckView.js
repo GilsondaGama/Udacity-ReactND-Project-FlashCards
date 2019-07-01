@@ -8,6 +8,7 @@ import { Icon } from 'react-native-material-ui';
 import OverlayButton from '../../utils/OverlayButton';
 import { alertMessage } from '../../utils/notifications';
 import { white, green700, blue200, blue400, blue600, blue800 } from '../../utils/colors';
+import { TextDesk, TouchableButtonGreen, TouchableButtonBlue, Container } from '../../utils/styleds'
 
 class DeckView extends Component {
   state = {
@@ -76,34 +77,31 @@ class DeckView extends Component {
           }}
         />
 
-        <Buttons >
-          <TouchableAdd onPress={() => Actions.NewCard({ decKey })}>
-            <Icon
-              name="add-circle"
-              color={white}
-              size={40}
-            />
-            <TextButton >
-              NEW CARD
-            </TextButton>
-          </TouchableAdd>
+        <TouchableButtonGreen onPress={() => Actions.NewCard({ decKey })}>
+          <Icon
+            name="add-circle"
+            color={white}
+            size={40}
+          />
+          <TextDesk >
+            NEW CARD
+          </TextDesk>
+        </TouchableButtonGreen>
 
-          <TouchableQuiz
-            onPress={() => {
-              decks.questions.length <= 0
-                ? alertMessage('Sorry!!', 'You dont have cards to this deck yet.', () => false)
-                : Actions.QuizView({ decKey })
-            }}>
-            <Icon
-              name="play-circle-filled"
-              color={white}
-              size={40}
-            />
-            <TextButton >
-              QUIZ
-            </TextButton>
-          </TouchableQuiz>
-        </Buttons>
+        <TouchableButtonBlue onPress={() => {
+          decks.questions.length <= 0
+            ? alertMessage('Sorry!!', 'You dont have cards to this deck yet.', () => false)
+            : Actions.QuizView({ decKey })
+        }}>
+          <Icon
+            name="play-circle-filled"
+            color={white}
+            size={40}
+          />
+          <TextDesk >
+            QUIZ
+          </TextDesk>
+        </TouchableButtonBlue>
       </Container >
     );
   }
@@ -123,16 +121,6 @@ const ImageContainer = styled.View`
   paddingRight: 20px;
 `;
 
-const Container = styled.View`
-  flex: 1;
-  flexDirection: column;
-  alignItems: center;
-  padding: 10px;
-  backgroundColor: ${blue600}
-  paddingLeft: 10px;
-  paddingRight: 10px;  
-`;
-
 const HeaderView = styled.View`
   flex: 1;
   paddingLeft: 40px;
@@ -145,28 +133,6 @@ const HeaderView = styled.View`
   borderRadius: 10;
   borderColor: ${blue200};
   borderWidth: 4;
-`;
-
-const TouchableAdd = styled.TouchableOpacity`
-  marginTop: 30;
-  marginRight: 10;
-  marginLeft: 10;
-  width: 150px;
-  backgroundColor: ${green700};
-  paddingTop: 5;
-  paddingBottom: 5;
-  borderRadius: 50;
-  justifyContent: center;
-  alignItems: center;
-  elevation: 2;
-`;
-
-const TouchableQuiz = styled(TouchableAdd)`
-  backgroundColor: ${blue800};
-`;
-
-const Buttons = styled.View`
-  flexDirection: row;
 `;
 
 const TextButton = styled.Text`

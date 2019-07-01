@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { white, black, blue200, blue400, blue600, blue700, blue900, green700, red700 } from './colors';
+import { white, black, blue200, blue400, blue600, blue700, blue800, blue900, green700, red700 } from './colors';
 
 export const TextDesk = styled.Text`
   fontSize: 25px;
@@ -47,7 +47,6 @@ export const TouchableButtonGreen = styled.TouchableOpacity`
   height: 60px;
   marginTop: 10;
   padding: 20px  
-  justifyContent: center;
   alignItems: center;
   borderRadius: 45;
   elevation: 2;
@@ -55,7 +54,7 @@ export const TouchableButtonGreen = styled.TouchableOpacity`
 `;
 
 export const TouchableButtonBlue = styled(TouchableButtonGreen)`
-  backgroundColor: ${blue700};
+  backgroundColor: ${blue800};
 `;
 
 export const TouchableButtonRed = styled(TouchableButtonGreen)`
