@@ -1,4 +1,5 @@
-import { createAppContainer, createStackNavigator } from "react-navigation";
+import React, { Component } from 'react';
+import { Router, Scene } from 'react-native-router-flux';
 
 import DeckList from "../components/DeckList";
 import NewDeck from "../components/NewDeck";
@@ -8,32 +9,21 @@ import QuizView from "../components/QuizView";
 
 import { blue500, white } from '../../utils/colors';
 
-const AppNavigator = createStackNavigator(
-  {
-    DeckList: {
-      screen: DeckList
-    },
-    NewDeck: {
-      screen: NewDeck
-    },
-    DeckView: {
-      screen: DeckView
-    },
-    AddCard: {
-      screen: AddCard
-    },
-    QuizView: {
-      screen: QuizView
-    }
-  },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: `${blue500}`
-      },
-      headerTintColor: `${white}`
-    }
-  }
-);
+export default class Routes extends Component {
+  render() {
+    return (
+      <Router
+        navigationBarStyle={{ backgroundColor: `${blue500}` }}
+        titleStyle={{ color: `${white}` }}>
 
-export default createAppContainer(AppNavigator);
+        <Scene key='root'>
+          <Scene key='DeckList' component={DeckList} title='Deck List' initial />
+          <Scene key='NewDeck' component={NewDeck} title='New Deck' />
+          <Scene key='DeckView' component={DeckView} title='Deck View' />
+          <Scene key='AddCard' component={AddCard} title='Add Card' />
+          <Scene key='QuizView' component={QuizView} title='Quiz View' />
+        </Scene>
+      </Router>
+    );
+  }
+}

@@ -1,13 +1,38 @@
 import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Icon } from 'react-native-material-ui';
-import { View, TouchableOpacity, FlatList, Animated } from "react-native";
+import { Actions } from 'react-native-router-flux';
 
+import { View, TouchableOpacity, FlatList, Animated } from "react-native";
+import { Icon } from 'react-native-material-ui';
 import styled from "styled-components/native";
+import * as DecksActions from "../actions/decks";
 import { white, blue200, blue400, blue600, blue700, blue800 } from '../../utils/colors';
 
-import * as DecksActions from "../actions/decks";
+
+function Desk({ decKey, title, numberOfCards }) {
+  return (
+    <TouchableOpacity onPress={() => Actions.DeckView({ decKey })}>
+      <DeskContainer as={Animated.View} >
+        <Avatar>
+          <TextDeskAvatar >
+            {title.charAt(0).toUpperCase()}
+          </TextDeskAvatar>
+        </Avatar>
+
+        <View>
+          <TextDesk >
+            {title}
+          </TextDesk>
+          <TextDeskSmall >
+            {numberOfCards} Cards
+          </TextDeskSmall>
+        </View>
+      </DeskContainer>
+    </ TouchableOpacity >
+  );
+}
+
 
 class DeckList extends Component {
   state = {
@@ -27,31 +52,17 @@ class DeckList extends Component {
     Animated.timing(opacity, { toValue: 1, duration: 1000 }).start();
   }
 
-  renderItem(item) {
-    const { opacity } = this.state;
-    return (
-      <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckView')} >
-        <DeskContainer as={Animated.View} style={[{ opacity }]}>
-          <Avatar>
-            <TextDeskAvatar >
-              {item.title.charAt(0).toUpperCase()}
-            </TextDeskAvatar>
-          </Avatar>
-
-          <View>
-            <TextDesk >
-              {item.title}
-            </TextDesk>
-            <TextDeskSmall >
-              {item.questions.length} Cards
-            </TextDeskSmall>
-          </View>
-        </DeskContainer>
-      </ TouchableOpacity >
-    );
-  };
+  renderItem = ({ item }) => {
+    return <Desk
+      key={item.key}
+      decKey={item.key}
+      title={item.title}
+      numberOfCards={item.questions.length}
+    />;
+  }
 
   render() {
+    const { opacity } = this.state;
     const { decks } = this.props;
 
     const data = Object.keys(decks).map(key => {
@@ -59,28 +70,25 @@ class DeckList extends Component {
     });
 
     return (
-      <Fragment>
-        <ListContainer >
-          <FlatList
-            data={data}
-            renderItem={({ item }) => this.renderItem(item)}
-          />
 
-          <TouchableOpacityCustom
-            onPress={() =>
-              this.props.navigation.navigate("NewDeck")
-            }>
-            <Icon
-              name="add-circle"
-              color={white}
-              size={40}
-            />
-            <TextButton >
-              NEW DECK
-            </TextButton>
-          </TouchableOpacityCustom>
-        </ListContainer>
-      </Fragment>
+      <ListContainer >
+        <FlatList
+          data={data}
+          renderItem={this.renderItem}
+        />
+
+        <TouchableOpacityCustom onPress={() => Actions.NewDeck()}>
+          <Icon
+            name="add-circle"
+            color={white}
+            size={40}
+          />
+          <TextButton >
+            NEW DECK
+          </TextButton>
+        </TouchableOpacityCustom>
+      </ListContainer>
+
     );
   }
 }
