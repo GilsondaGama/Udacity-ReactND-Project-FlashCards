@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import { alertMessage } from '../../utils/notifications';
 import { Icon } from 'react-native-material-ui';
 import { Actions } from 'react-native-router-flux';
+import { View } from 'react-native';
 
 import styled from "styled-components/native";
-import { white, black, blue200, blue400, blue600, blue700, } from '../../utils/colors';
+import { white, blue200, blue400 } from '../../utils/colors';
 import { TextDesk, TextInputCustom, TouchableButtonGreen, TouchableButtonRed, Container } from '../../utils/styleds'
 import * as DecksActions from "../actions/decks";
 
@@ -50,25 +51,21 @@ class NewDeck extends Component {
           />
 
           <TouchableButtonGreen onPress={this.onSubmit}>
-            <Icon
-              name="check-circle"
-              color={white}
-              size={40}
-            />
-            <TextDesk >
-              SAVE DECK
-            </TextDesk>
+            <View style={{ flex: 1 }}>
+              <Icon name="check-circle" color={white} size={40} />
+            </View>
+            <View style={{ flex: 3, justifyContent: 'center' }}>
+              <TextDesk > Save Deck </TextDesk>
+            </View>
           </TouchableButtonGreen>
 
           <TouchableButtonRed onPress={() => Actions.DeckList()}>
-            <Icon
-              name="cancel"
-              color={white}
-              size={40}
-            />
-            <TextDesk >
-              CANCEL
-            </TextDesk>
+            <View style={{ flex: 1 }}>
+              <Icon name="cancel" color={white} size={40} />
+            </View>
+            <View style={{ flex: 3, justifyContent: 'center' }}>
+              <TextDesk > Cancel </TextDesk>
+            </View>
           </TouchableButtonRed>
 
         </Body>

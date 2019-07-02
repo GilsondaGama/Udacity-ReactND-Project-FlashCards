@@ -6,7 +6,7 @@
       <change beforePath="$PROJECT_DIR$/src/components/DeckView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DeckView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/NewCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/NewDeck.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewDeck.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/styleds.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/styleds.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuizView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuizView.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,9 +28,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">

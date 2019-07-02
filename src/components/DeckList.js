@@ -75,14 +75,12 @@ class DeckList extends Component {
         />
 
         <TouchableButtonGreen onPress={() => Actions.NewDeck()}>
-          <Icon
-            name="add-circle"
-            color={white}
-            size={40}
-          />
-          <TextDesk >
-            NEW DECK
-          </TextDesk>
+          <View style={{ flex: 1 }}>
+            <Icon name="add-circle" color={white} size={40} />
+          </View>
+          <View style={{ flex: 3, justifyContent: 'center' }}>
+            <TextDesk > New Deck </TextDesk>
+          </View>
         </TouchableButtonGreen>
       </Container>
 

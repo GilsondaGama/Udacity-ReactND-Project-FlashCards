@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import { Icon } from 'react-native-material-ui';
 import OverlayButton from '../../utils/OverlayButton';
 import { alertMessage } from '../../utils/notifications';
-import { white, green700, blue200, blue400, blue600, blue800 } from '../../utils/colors';
+import { white, blue200, blue400 } from '../../utils/colors';
 import { TextDesk, TouchableButtonGreen, TouchableButtonBlue, Container } from '../../utils/styleds'
 
 class DeckView extends Component {
@@ -78,14 +78,12 @@ class DeckView extends Component {
         />
 
         <TouchableButtonGreen onPress={() => Actions.NewCard({ decKey })}>
-          <Icon
-            name="add-circle"
-            color={white}
-            size={40}
-          />
-          <TextDesk >
-            NEW CARD
-          </TextDesk>
+          <View style={{ flex: 1 }}>
+            <Icon name="add-circle" color={white} size={40} />
+          </View>
+          <View style={{ flex: 3, justifyContent: 'center' }}>
+            <TextDesk > New Card </TextDesk>
+          </View>
         </TouchableButtonGreen>
 
         <TouchableButtonBlue onPress={() => {
@@ -93,14 +91,12 @@ class DeckView extends Component {
             ? alertMessage('Sorry!!', 'You dont have cards to this deck yet.', () => false)
             : Actions.QuizView({ decKey })
         }}>
-          <Icon
-            name="play-circle-filled"
-            color={white}
-            size={40}
-          />
-          <TextDesk >
-            QUIZ
-          </TextDesk>
+          <View style={{ flex: 1 }}>
+            <Icon name="play-circle-filled" color={white} size={40} />
+          </View>
+          <View style={{ flex: 3, justifyContent: 'center' }}>
+            <TextDesk > Quiz </TextDesk>
+          </View>
         </TouchableButtonBlue>
       </Container >
     );
