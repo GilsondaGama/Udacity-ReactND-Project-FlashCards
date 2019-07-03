@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Switch, Button, Animated } from 'react-native';
+import { View, Text, Switch, Animated } from 'react-native';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Icon } from 'react-native-material-ui';
 import { setLocalNotification, clearLocalNotification } from '../../utils/notifications';
-import { white, blue200, blue400, blue600, blue800, green200, green400, green700, red700 } from '../../utils/colors';
+import { white, blue200, blue400 } from '../../utils/colors';
 import { TextDesk, TouchableButtonGreen, TouchableButtonBlue, TouchableButtonRed, Container } from '../../utils/styleds'
 
 class QuizView extends Component {
@@ -22,10 +22,6 @@ class QuizView extends Component {
     return {
       title: `Quiz for ${decKey}`
     };
-  }
-
-  componentDidMount() {
-    clearLocalNotification().then(setLocalNotification);
   }
 
   toggleAnimate = () => {
@@ -57,6 +53,8 @@ class QuizView extends Component {
     const currentQuestion = decks.questions[cardPosition];
 
     if (cardPosition >= totalQuestions) {
+
+      clearLocalNotification().then(setLocalNotification);
       return (
         <Container>
           <QuestionContainer>

@@ -52,6 +52,12 @@ $ npm start
 ```
 
 
+## Plataforma
+App tested and working correctly only on the Android platform, on devices and (or) emulator.
+
+
+1. Fork it
+
 ## Contributing
 
 1. Fork it
